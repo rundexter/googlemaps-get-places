@@ -62,8 +62,9 @@ module.exports = _.merge({
              * You should update this section with some test input for testing your module
              */
             input: {
-                'location': '-33.8670522,151.1957362',
-                'radius': '500'
+                'location': ['-33.8670522,151.1957362'],
+                'radius': '500',
+                types: ['food']
             }
         }
     }

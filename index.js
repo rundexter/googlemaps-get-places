@@ -1,6 +1,5 @@
-var _ = require('lodash'),
-    GoogleMapsAPI = require('googlemaps'),
-    util = require('./util.js');
+var util = require('./util.js'),
+    GoogleMapsAPI = require('googlemaps');
 
 var pickInputs = {
         'location': 'location',
@@ -53,12 +52,14 @@ module.exports = {
 
         if (dexter.environment('google_server_key')) {
             authData.key = dexter.environment('google_server_key');
-        } else if (dexter.environment('google_client_id') && dexter.environment('google_private_key')) {
+        }
+
+        if (dexter.environment('google_client_id') && dexter.environment('google_private_key')) {
             authData.google_client_id = dexter.environment('google_client_id');
             authData.google_private_key = dexter.environment('google_private_key');
         }
 
-        return _.isEmpty(authData)? false : authData;
+        return authData;
     },
 
     /**
@@ -69,13 +70,15 @@ module.exports = {
      */
     run: function(step, dexter) {
         var auth = this.authOptions(step, dexter);
-        if (!auth)
+        if (!Object.keys(auth).length)
             return this.fail('A [google_server_key] (or [google_client_id,google_private_key] for enterprise) environment variable need for this module.');
 
         var gmAPI = new GoogleMapsAPI(auth);
         gmAPI.placeSearch(util.pickInputs(step, pickInputs), function(err, result) {
             if (err)
                 this.fail(err);
+            if (result.error_message)
+                this.fail(result.error_message);
             else
                 this.complete(util.pickOutputs(result, pickOutputs));
         }.bind(this));
