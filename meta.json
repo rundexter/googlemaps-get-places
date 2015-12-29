@@ -4,23 +4,66 @@
 {
     //Required. Inputs the module expects.
     "inputs": [
-        //e.g.
-        /*
         {
-            "id": "from",
-            "title":"From"
+            "id": "location",
+            "title":"Location"
+        },
+        {
+            "id": "radius",
+            "title":"Radius"
+        },
+        {
+            "id": "rankby",
+            "title":"Ranked By"
+        },
+        {
+            "id": "keyword",
+            "title":"Keyword"
+        },
+        {
+            "id": "name",
+            "title":"Name"
+        },
+        {
+            "id": "opennow",
+            "title":"Open Now"
+        },
+        {
+            "id": "types",
+            "title":"Types"
+        },
+        {
+            "id": "maxprice",
+            "title":"Max Price"
         }
-        */
     ],
     //Required. Outputs the module emits.
     "outputs": [
-      //e.g.
-      /*
         {
-            "id": "from",
-            "title":"From"
+            "id": "id",
+            "title":"ID"
+        },
+        {
+            "id": "name",
+            "title":"Name"
+        },
+        {
+            "id": "opening_hours",
+            "title":"Open Hours"
+        },
+        {
+            "id": "place_id",
+            "title":"Place ID"
+        },
+        {
+            "id": "types",
+            "title":"Types"
+        },
+        {
+            "id": "vicinity",
+            "title":"Vicinity"
         }
-      */
     ],
+    "icon": "dex-gmaps",
     "title": "Google Maps Get Places" /* Required.A display name for the module */
 }
